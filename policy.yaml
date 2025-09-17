@@ -1,13 +1,13 @@
-apiVersion: policy.sigstore.dev/v1alpha1
+apiVersion: policy.sigstore.dev/v1beta1
 kind: ClusterImagePolicy
 metadata:
-  name: require-signed
+  name: require-signed-by-ntenezos
 spec:
   images:
-    - glob: "**"
+    - glob: "ghcr.io/ntenezost/secure-container@sha256:**"
   authorities:
     - keyless:
         url: https://fulcio.sigstore.dev
         identities:
-          - issuerRegExp: ".*"
-            subjectRegExp: ".*"
+          - issuer: "https://github.com/login/oauth"
+            subject: "t.ntenezos@gmail.com"
