@@ -1,0 +1,16 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: secure-container
+  namespace: dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels: { app: secure-container }
+  template:
+    metadata:
+      labels: { app: secure-container }
+    spec:
+      containers:
+        - name: app
+          image: ghcr.io/ntenezost/secure-container@sha256:ba1f9f2e5ae8d4b00b828c522203d36b7fd49a4ad305be9e6eabd5adbc56ece3
